@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-import { github_data } from "../../Github_authentication/Github_authentication";
+// import { github_data } from "../../Github_authentication/Github_authentication";
 
 const repositories = gql`
 query repositories($username:String!) {

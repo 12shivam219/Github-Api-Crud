@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { github_data } from './components/Github_authentication/Github_authentication';
+// import { github_data } from './components/Github_authentication/Github_authentication';
 
+export const userName="12shivam219";
+export const token="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" ;
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
@@ -24,7 +26,7 @@ const client = new ApolloClient({
     }
   }),
   headers: {
-    Authorization: `Bearer ${github_data["token"]}`,
+    Authorization: `Bearer ${token}`,
   },
 });
 

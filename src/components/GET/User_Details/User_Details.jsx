@@ -1,6 +1,7 @@
-import { gql,useQuery} from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-import { github_data } from "../../Github_authentication/Github_authentication";
+// import { github_data } from "../../Github_authentication/Github_authentication";
+import { userName } from "../../..";
 
 const GET_USER_DETAILS = gql`
   query GET_USER_DETAILS($username: String!) {
@@ -8,6 +9,7 @@ const GET_USER_DETAILS = gql`
       name
       bio
       location
+      avatarUrl
     }
   }
 
@@ -16,9 +18,9 @@ const GET_USER_DETAILS = gql`
 
 function User_Details() {
 
-  
+
   const { loading, error, data } = useQuery(GET_USER_DETAILS, {
-    variables: { username: github_data["userName"] },
+    variables: { username: userName },
   });
 
 
@@ -26,14 +28,25 @@ function User_Details() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
 
-  const { name, bio, location } = data.user
+  const { name, bio, location, avatarUrl } = data.user
+  console.log(avatarUrl);
   return (
     <>
-      <ul>
-        <li>{name}</li>
-        <li>{bio}</li>
-        <li>{location}</li>
-      </ul>
+
+      <div className="user-details">
+        <div className="user-img">
+          <img src={avatarUrl} alt="" className="rounded-full"/>
+        </div>
+        <div className="user-name">
+          <h1>{name}</h1>
+        </div>
+        <div className="user-bio">
+          <p>{bio}</p>
+        </div>
+        <div className="location">
+          <span>{location}</span>
+        </div>
+      </div>
     </>
   );
 }
