@@ -7,7 +7,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 // import { github_data } from './components/Github_authentication/Github_authentication';
 
 export const userName="12shivam219";
-export const token="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" ;
+export const token="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" ;
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
@@ -29,8 +29,6 @@ const client = new ApolloClient({
     Authorization: `Bearer ${token}`,
   },
 });
-
-
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

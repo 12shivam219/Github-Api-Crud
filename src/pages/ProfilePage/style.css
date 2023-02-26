@@ -1,0 +1,15 @@
+main li {
+    position: relative;
+}
+
+main li:active:after {
+    background: #f78166;
+    border-radius:  6px;
+    bottom: -65%;
+    content: "";
+    height: 2px;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 100%;
+}

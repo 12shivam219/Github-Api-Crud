@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-// import { github_data } from "../../Github_authentication/Github_authentication";
+import { userName } from "../../..";
 
 const repositories = gql`
 query repositories($username:String!) {
@@ -11,6 +11,8 @@ query repositories($username:String!) {
                 id
                 name
                 url
+                primaryLanguage{name}
+                visibility
             }
         }
     }
@@ -22,20 +24,20 @@ query repositories($username:String!) {
 
 export default function User_Repositories() {
     const { loading, error, data } = useQuery(repositories,
-        { variables: { username: github_data["userName"] } })
+        { variables: { username: userName} })
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :</p>;
 
-    const {nodes}=data.user.repositories
+    const { nodes } = data.user.repositories
     return (
-        
+
         <ul>
-        {
-            nodes.map((data)=>(
-                <li key={data.name}>{data.id}</li>
-            ))
-        }
+            {
+                nodes.map((data) => (
+                    <a href={data.url} className="text-white">{data.name}</a>
+                ))
+            }
         </ul>
     )
 }

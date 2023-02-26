@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Github_Token_Data from '../../components/Github_Token_Data/Github_Token_Data';
 import "./style.css"
 
 export default function Authentication() {
@@ -15,13 +16,11 @@ export default function Authentication() {
       "userName": userName,
       "token": token
     }
-
-    console.log(github_data);
-
+    
     setUserName(' ');
     setToken(' ');
-
   }
+
 
   return (
     <>
