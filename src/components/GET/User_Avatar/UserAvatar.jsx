@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-import { userName } from "../../..";
+import { token_details } from "../../..";
 
 const Get_avatarUrl = gql`
 query GetAvatar($userName:String!) {
@@ -13,7 +13,7 @@ query GetAvatar($userName:String!) {
 
 export default function UserAvatar() {
 
-    const { loading, error, data } = useQuery(Get_avatarUrl, { variables: { userName: userName } })
+    const { loading, error, data } = useQuery(Get_avatarUrl, { variables: { userName: token_details.userName } })
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :{error.message}</p>;
@@ -21,7 +21,7 @@ export default function UserAvatar() {
     const avatarurl = data.user.avatarUrl;
     return (
         <>
-            <img src={avatarurl} alt={userName} className="w-7 rounded-full"/>
+            <img src={avatarurl} alt={token_details.userName} className="w-7 rounded-full"/>
         </>
     )
 }

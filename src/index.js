@@ -6,8 +6,16 @@ import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 // import { github_data } from './components/Github_authentication/Github_authentication';
 
-export const userName="12shivam219";
-export const token="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" ;
+// export const userName="12shivam219";
+// export const token="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" ;
+
+export let token_details=localStorage.getItem("data")
+if(token_details==null) {
+  token_details={}
+}
+else {
+  token_details=JSON.parse(token_details)
+}
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
@@ -26,7 +34,7 @@ const client = new ApolloClient({
     }
   }),
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${token_details.token}`,
   },
 });
 

@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-import { userName } from "../../..";
+import { token_details} from "../../..";
 
 const GET_USER_DETAILS = gql`
   query GET_USER_DETAILS($username: String!) {
@@ -33,7 +33,7 @@ function User_Details() {
 
 
   const { loading, error, data } = useQuery(GET_USER_DETAILS, {
-    variables: { username: userName },
+    variables: { username: token_details.userName },
   });
 
 
@@ -53,7 +53,7 @@ function User_Details() {
 
         <div className="user-name mt-5 mb-4">
           <h1 className="text-white font-medium text-3xl">{name}</h1>
-          <span className="text-[#3c3636] text-xl">{userName}</span>
+          <span className="text-[#3c3636] text-xl">{token_details.userName}</span>
         </div>
 
         <div className="user-bio">
