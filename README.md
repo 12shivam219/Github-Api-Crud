@@ -64,4 +64,4 @@ This app does not require authentication, but if you want to use the GitHub API 
 
 # Authors
 
-Shivam tiwari - [https://github.com/12shivam219]
+Shivam tiwari - [https://githubclonec.netlify.app/]
