@@ -43,6 +43,10 @@ function User_Details() {
 
   const { name, bio, location, avatarUrl, followers, following } = data.user
 
+  console.log(name)
+  console.log(bio)
+  console.log(location)
+
   return (
     <>
 

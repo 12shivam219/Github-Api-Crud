@@ -13,10 +13,11 @@ export default function Header() {
     const handleCloseCreateRepo = () => {
         setShowCreateRepo(false);
     }
+
     return (
         <>
             <div className="header block w-full bg-[#161b22] py-1.5 shadow-xl z-20">
-                <div className="navContainer flex w-11/12 m-auto justify-between">
+                <div className="navContainer relative flex w-11/12 m-auto justify-between">
                     <div className="left-info flex items-center">
                         <div className="nav-img">
                             <img src="./assets/git-logo.jpg" alt="git-logo.jpg" className='rounded-full w-12' />

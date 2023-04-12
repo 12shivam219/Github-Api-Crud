@@ -46,7 +46,7 @@ export default function Create_New_Repositry() {
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="bg-gray-800 p-4 rounded-lg">
+            <form onSubmit={handleSubmit} className="bg-gray-800 absolute right-[-60px] top-[50px] p-4 rounded-lg">
                 <div className="mb-4">
                     <label className="block text-white font-bold mb-2" htmlFor="name">
                         Name:

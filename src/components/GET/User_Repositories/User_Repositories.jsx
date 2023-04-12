@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
 import React from 'react'
-import { token_details } from "../../..";
 
 
 const popularRepositories = gql`
@@ -38,8 +37,10 @@ export default function User_Repositories() {
     // console.log(nodes[0].visibility)
 
     const { loading, error, data } = useQuery(popularRepositories)
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :</p>;
+    if (loading) return <p className="text-white">Loading...</p>;
+    if (error) return <p className='text-white'>Error : {error.message}</p>;
+
+    console.log(data);
 
     return (
         <>

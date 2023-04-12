@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CommonContainer from '../../CommonContainer/CommonContainer';
-import Create_New_Repositry from '../../components/SET/Create_Repositry/Create_New_Repositry';
 import Profile from '../ProfilePage/Profile';
 import "./style.css"
 
@@ -10,37 +9,68 @@ export default function Authentication() {
   const [token, setToken] = useState('');
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIN") || "false")
+  const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIN") || "false")
 
-  const handleButtonClick = () => {
-    setIsAuthenticated(true);
-    setLoggedIn("true");
-    localStorage.setItem("loggedIN" , "true")
-    const github_data = {
-      "userName": userName.trim(),
-      "token": token.trim()
+  // const handleButtonClick =  () => {
+  //   setIsAuthenticated(true);
+  //   setLoggedIn("true");
+  //   localStorage.setItem("loggedIN", "true")
+  //   const github_data = {
+  //     "userName": userName.trim(),
+  //     "token": token.trim()
+  //   }
+
+  //   localStorage.setItem("data", JSON.stringify(github_data))
+
+
+  //   setUserName('');
+  //   setToken('');
+  // }
+
+
+  const handleButtonClick = async () => {
+    try {
+      const response = await fetch('https://api.github.com', {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+
+      if (response.status === 401) {
+        throw new Error('Invalid token');
+      }
+
+      setIsAuthenticated(true);
+      setLoggedIn('true');
+      localStorage.setItem('loggedIN', 'true');
+
+      const github_data = {
+        userName: userName.trim(),
+        token: token.trim(),
+      };
+
+      localStorage.setItem('data', JSON.stringify(github_data));
+
+      setUserName('');
+      setToken('');
+    } catch (error) {
+      console.error(error);
+      alert('Error: Invalid token');
     }
-
-    localStorage.setItem("data",JSON.stringify(github_data))
-   
-
-    setUserName('');
-    setToken('');
-  }
+  };
 
 
 
   if (isAuthenticated || isLoggedIn == "true") {
 
     return (
-    <CommonContainer>
-      <Profile/>
-    </CommonContainer>
-
-    // <Create_New_Repositry/>
+      <CommonContainer>
+        <Profile />
+      </CommonContainer>
 
     );
   }
+
 
   else {
     return (
